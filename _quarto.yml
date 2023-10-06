@@ -10,6 +10,7 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - Data.qmd
     - summary.qmd
     - references.qmd
 

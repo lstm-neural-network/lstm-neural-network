@@ -1,0 +1,32 @@
+#Data
+
+For this project we will be using the historical stock market data going back 5 years for two publicly traded companies, Apple - sticker AAPL & General Motors - sticker GM. We will mainly focus on AAPL as our subject data set as we test how accurately LSTMS can predict financial time series data. GM will be used to compare/contrast the results between the companies. The data is sourced using the yfinance package in python, yfinance is an open source tool that uses Yahoo's publicly available APIs to download market data. Below you will find the code snippet to download the data.
+
+```{python}
+#Downloading the Data
+
+!pip install yfinance
+import yfinance as yf
+from datetime import datetime
+
+#Stocks that we'll be analyzing
+AAPL = ['AAPL']
+GM = ['GM']
+
+#Set start and end date for the data pull
+#We want to look at the past 5 years, so we'll pull the previous 5 years of data
+end_time = datetime.now()
+start_time = datetime(end_time.year - 5, end_time.month, end_time.day)
+
+#download the stocks we want to model into seperate dataframes
+AAPL = yf.download(AAPL, start_time, end_time, actions=True)
+GM = yf.download(GM, start_time, end_time)
+
+#View the data
+AAPL.head(10)
+
+```
+
+**2.1 Data Description**
+
+**2.2 Data Visualizations**
