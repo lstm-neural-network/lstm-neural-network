@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./methodology.html" rel="next">
 <link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./methodology.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methodology</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,40 +234,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#View the data</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>AAPL.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>WARNING: You are using pip version 22.0.4; however, version 23.2.1 is available.
-You should consider upgrading via the 'C:\Users\moise\AppData\Local\Programs\Python\Python310\python.exe -m pip install --upgrade pip' command.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: yfinance in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (0.2.31)
-Requirement already satisfied: lxml&gt;=4.9.1 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (4.9.3)
-Requirement already satisfied: numpy&gt;=1.16.5 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.23.3)
-Requirement already satisfied: html5lib&gt;=1.1 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.1)
-Requirement already satisfied: pytz&gt;=2022.5 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (2023.3.post1)
-Requirement already satisfied: frozendict&gt;=2.3.4 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (2.3.8)
-Requirement already satisfied: multitasking&gt;=0.0.7 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (0.0.11)
-Requirement already satisfied: peewee&gt;=3.16.2 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (3.16.3)
-Requirement already satisfied: beautifulsoup4&gt;=4.11.1 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (4.12.2)
-Requirement already satisfied: requests&gt;=2.31 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (2.31.0)
-Requirement already satisfied: appdirs&gt;=1.4.4 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.4.4)
-Requirement already satisfied: pandas&gt;=1.3.0 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.5.0)
-Requirement already satisfied: soupsieve&gt;1.2 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from beautifulsoup4&gt;=4.11.1-&gt;yfinance) (2.5)
-Requirement already satisfied: six&gt;=1.9 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
-Requirement already satisfied: webencodings in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from html5lib&gt;=1.1-&gt;yfinance) (0.5.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.0)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.6)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\moise\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)</code></pre>
+<pre><code>Collecting yfinance
+  Downloading yfinance-0.2.31-py2.py3-none-any.whl (65 kB)
+     ---------------------------------------- 65.6/65.6 kB 1.8 MB/s eta 0:00:00
+Collecting frozendict&gt;=2.3.4
+  Downloading frozendict-2.3.8-cp310-cp310-win_amd64.whl (35 kB)
+Collecting multitasking&gt;=0.0.7
+  Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
+Collecting beautifulsoup4&gt;=4.11.1
+  Downloading beautifulsoup4-4.12.2-py3-none-any.whl (142 kB)
+     -------------------------------------- 143.0/143.0 kB 2.1 MB/s eta 0:00:00
+Requirement already satisfied: numpy&gt;=1.16.5 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.23.3)
+Requirement already satisfied: pandas&gt;=1.3.0 in c:\users\princ\appdata\roaming\python\python310\site-packages (from yfinance) (1.5.0)
+Requirement already satisfied: lxml&gt;=4.9.1 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (4.9.3)
+Collecting peewee&gt;=3.16.2
+  Downloading peewee-3.16.3.tar.gz (928 kB)
+     -------------------------------------- 928.0/928.0 kB 3.1 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting html5lib&gt;=1.1
+  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
+     -------------------------------------- 112.2/112.2 kB 3.3 MB/s eta 0:00:00
+Collecting pytz&gt;=2022.5
+  Downloading pytz-2023.3.post1-py2.py3-none-any.whl (502 kB)
+     -------------------------------------- 502.5/502.5 kB 3.9 MB/s eta 0:00:00
+Requirement already satisfied: requests&gt;=2.31 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (2.31.0)
+Collecting appdirs&gt;=1.4.4
+  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Collecting soupsieve&gt;1.2
+  Downloading soupsieve-2.5-py3-none-any.whl (36 kB)
+Collecting webencodings
+  Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: six&gt;=1.9 in c:\users\princ\appdata\roaming\python\python310\site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in c:\users\princ\appdata\roaming\python\python310\site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.6)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.0)
+Building wheels for collected packages: peewee
+  Building wheel for peewee (pyproject.toml): started
+  Building wheel for peewee (pyproject.toml): finished with status 'done'
+  Created wheel for peewee: filename=peewee-3.16.3-py3-none-any.whl size=135547 sha256=63b9a00b0b96d1abc7e0eeace693565d65e28081ef97370aea23a0ab3491665e
+  Stored in directory: c:\users\princ\appdata\local\pip\cache\wheels\c8\ac\6d\ad6d828725ffbe3abc508c95d25dd0c5fcc63539ae47913790
+Successfully built peewee
+Installing collected packages: webencodings, pytz, peewee, multitasking, appdirs, soupsieve, html5lib, frozendict, beautifulsoup4, yfinance
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2022.4
+    Uninstalling pytz-2022.4:
+      Successfully uninstalled pytz-2022.4
+Successfully installed appdirs-1.4.4 beautifulsoup4-4.12.2 frozendict-2.3.8 html5lib-1.1 multitasking-0.0.11 peewee-3.16.3 pytz-2023.3.post1 soupsieve-2.5 webencodings-0.5.1 yfinance-0.2.31</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+[notice] A new release of pip available: 22.2.2 -&gt; 23.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[*********************100%%**********************]  1 of 1 completed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+1 Failed download:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>['AAPL']: Exception('%ticker%: No timezone found, symbol may be delisted')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[*********************100%%**********************]  1 of 1 completed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+1 Failed download:</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>['GM']: Exception('%ticker%: No timezone found, symbol may be delisted')</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
@@ -286,8 +334,6 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\moise\appdata\l
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>Dividends</th>
-      <th>Stock Splits</th>
     </tr>
     <tr>
       <th>Date</th>
@@ -297,127 +343,29 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\moise\appdata\l
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>2018-10-08</th>
-      <td>55.552502</td>
-      <td>56.200001</td>
-      <td>55.049999</td>
-      <td>55.942501</td>
-      <td>53.578018</td>
-      <td>118655600</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-09</th>
-      <td>55.910000</td>
-      <td>56.817501</td>
-      <td>55.562500</td>
-      <td>56.717499</td>
-      <td>54.320255</td>
-      <td>107564000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-10</th>
-      <td>56.365002</td>
-      <td>56.587502</td>
-      <td>54.012501</td>
-      <td>54.090000</td>
-      <td>51.803818</td>
-      <td>167962400</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-11</th>
-      <td>53.630001</td>
-      <td>54.875000</td>
-      <td>53.080002</td>
-      <td>53.612499</td>
-      <td>51.346497</td>
-      <td>212497600</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-12</th>
-      <td>55.105000</td>
-      <td>55.720001</td>
-      <td>54.209999</td>
-      <td>55.527500</td>
-      <td>53.180550</td>
-      <td>161351600</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-15</th>
-      <td>55.290001</td>
-      <td>55.457500</td>
-      <td>54.317501</td>
-      <td>54.340000</td>
-      <td>52.043243</td>
-      <td>123164000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-16</th>
-      <td>54.732498</td>
-      <td>55.747501</td>
-      <td>54.189999</td>
-      <td>55.537498</td>
-      <td>53.190128</td>
-      <td>116736000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-17</th>
-      <td>55.575001</td>
-      <td>55.660000</td>
-      <td>54.834999</td>
-      <td>55.297501</td>
-      <td>52.960270</td>
-      <td>91541600</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-18</th>
-      <td>54.465000</td>
-      <td>54.935001</td>
-      <td>53.250000</td>
-      <td>54.005001</td>
-      <td>51.722404</td>
-      <td>130325200</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2018-10-19</th>
-      <td>54.514999</td>
-      <td>55.314999</td>
-      <td>54.357498</td>
-      <td>54.827499</td>
-      <td>52.510139</td>
-      <td>132314800</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p><strong>2.1 Data Description</strong></p>
+<p><strong>2.1 Data Variables Description</strong></p>
+<p>Several variables are retrieved for each stock. The definitions for the variables are as follows :</p>
+<p><strong>Date</strong> : This represents the date associated with each data point, such as daily stock prices.</p>
+<p><strong>Open</strong> : The stock price at the time of opening on a given trading day</p>
+<p><strong>Close</strong> : The stock price at the time of closing on a given trading day</p>
+<p><strong>High</strong> : The highest stock price reached on a given day.</p>
+<p><strong>Low</strong> : The lowest stock price reached on a given day.</p>
+<p><strong>Dividends</strong> : The amount of dividends paid to shareholders.</p>
+<p><strong>Split ratio</strong> : If there have been stock splits, this variable indicates the split ratio.</p>
+<p><strong>Adj Close</strong> : The closing stock price adjusted for any corporate actions such as dividends and stock splits.</p>
+<p><strong>Volume</strong> : The total number of shares traded on a given day.</p>
+<p><strong>Market Capitalization</strong> : The total market value of the market’s shares.</p>
+<p>In addition to the variables to the above variables, we are also going to add two more variables.</p>
+<p><strong>PCT Change</strong> - this calculates the percentage change of the closing price.</p>
+<p><strong>Moving Average</strong> - this variable will represent the average change of closing price for the series.</p>
 <p><strong>2.2 Data Visualizations</strong></p>
 
 
@@ -563,8 +511,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./methodology.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methodology</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
