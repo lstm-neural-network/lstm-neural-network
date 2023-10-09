@@ -27,6 +27,34 @@ AAPL.head(10)
 
 ```
 
-**2.1 Data Description**
+**2.1 Data Variables Description**
+
+Several variables are retrieved for each stock. The definitions for the variables are as follows :
+
+**Date** : This represents the date associated with each data point, such as daily stock prices.
+
+**Open** : The stock price at the time of opening on a given trading day
+
+**Close** : The stock price at the time of closing on a given trading day
+
+**High** : The highest stock price reached on a given day.
+
+**Low** : The lowest stock price reached on a given day.
+
+**Dividends** : The amount of dividends paid to shareholders.
+
+**Split ratio** : If there have been stock splits, this variable indicates the split ratio.
+
+**Adj Close** : The closing stock price adjusted for any corporate actions such as dividends and stock splits.
+
+**Volume** : The total number of shares traded on a given day.
+
+**Market Capitalization** : The total market value of the market's shares.
+
+In addition to the variables to the above variables, we are also going to add two more variables.
+
+**PCT Change** - this calculates the percentage change of the closing price.
+
+**Moving Average** - this variable will represent the average change of closing price for the series.
 
 **2.2 Data Visualizations**

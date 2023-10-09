@@ -5,13 +5,13 @@ project:
 
 book:
   title: "lstm-neural-network"
-  author: "Jane Doe"
+  author: "Kevin Waisfeld; Moise Brutus; Michael Nhliziyo"
   date: "9/28/2023"
   chapters:
     - index.qmd
     - intro.qmd
     - Data.qmd
-    - summary.qmd
+    - methodology.qmd
     - references.qmd
 
 bibliography: references.bib
