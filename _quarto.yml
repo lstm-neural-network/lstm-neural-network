@@ -4,7 +4,7 @@ project:
   output-dir: docs
 
 book:
-  title: "lstm-neural-network"
+  title: "LSTM Recurrent Neural Networks"
   author: "Kevin Waisfeld; Moise Brutus; Michael Nhliziyo"
   date: "9/28/2023"
   chapters:

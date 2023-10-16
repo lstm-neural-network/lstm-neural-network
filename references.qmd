@@ -1,4 +1,14 @@
 # References {.unnumbered}
+1.  A. Sherstinsky, "Fundamentals of Recurrent Neural Network (RNN) and Long Short-Term Memory (LSTM) network," Physica D: Nonlinear Phenomena, vol. 404, p. 132306, Mar. 2020, doi:<https://doi.org/10.1016/j.physd.2019.132306>.
+    
 
-::: {#refs}
-:::
+2.  P. Chaajer, M. Shah, and A. Kshirsagar, "The applications of artificial neural networks, support vector machines, and long-short term memory for stock market prediction," Decision Analytics Journal, p. 100015, Nov. 2021, doi: <https://doi.org/10.1016/j.dajour.2021.100015>.
+
+3. M. Kumbure, C. Lohrmann, P. Luukka, and J. Porras, "Machine learning techniques and data for stock market forecasting: A literature review," Expert Systems with Applications, vol. 197, p. 116659, Jul. 2022, doi: <https://doi.org/10.1016/j.eswa.2022.116659>
+
+4. Qiao, R., Chen, W., & Qiao, Y. (2022). Prediction of stock return by LSTM neural network. Applied Artificial Intelligence, 36(1). doi: <https://doi.org/10.1080/08839514.2022.2151159>.
+
+5. Fjellström, C. (2022, January 20). Long short-term memory neural network for Financial Time Series. arXiv.org. doi: <https://doi.org/10.48550/arXiv.2201.08218>.
+
+<!-- ::: {#refs}
+::: -->

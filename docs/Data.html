@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lstm-neural-network - 2&nbsp; Data</title>
+<title>LSTM Recurrent Neural Networks - 2&nbsp; Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -123,9 +60,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -149,7 +83,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">lstm-neural-network</a> 
+      <a href="./">LSTM Recurrent Neural Networks</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -189,7 +123,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#standard-variables" id="toc-standard-variables" class="nav-link active" data-scroll-target="#standard-variables"><span class="toc-section-number">2.1</span>  Standard Variables</a></li>
+  <li><a href="#additional-variables" id="toc-additional-variables" class="nav-link" data-scroll-target="#additional-variables"><span class="toc-section-number">2.2</span>  Additional Variables</a></li>
+  <li><a href="#data-summary-visualizations" id="toc-data-summary-visualizations" class="nav-link" data-scroll-target="#data-summary-visualizations"><span class="toc-section-number">2.3</span>  Data Summary &amp; Visualizations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -211,164 +153,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>For this project we will be using the historical stock market data going back 5 years for two publicly traded companies, Apple - sticker AAPL &amp; General Motors - sticker GM. We will mainly focus on AAPL as our subject data set as we test how accurately LSTMS can predict financial time series data. GM will be used to compare/contrast the results between the companies. The data is sourced using the yfinance package in python, yfinance is an open source tool that uses Yahoo’s publicly available APIs to download market data. Below you will find the code snippet to download the data.</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Downloading the Data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install yfinance</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Stocks that we'll be analyzing</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>AAPL <span class="op">=</span> [<span class="st">'AAPL'</span>]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>GM <span class="op">=</span> [<span class="st">'GM'</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Set start and end date for the data pull</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#We want to look at the past 5 years, so we'll pull the previous 5 years of data</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> datetime.now()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> datetime(end_time.year <span class="op">-</span> <span class="dv">5</span>, end_time.month, end_time.day)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#download the stocks we want to model into seperate dataframes</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>AAPL <span class="op">=</span> yf.download(AAPL, start_time, end_time, actions<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>GM <span class="op">=</span> yf.download(GM, start_time, end_time)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#View the data</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>AAPL.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Collecting yfinance
-  Downloading yfinance-0.2.31-py2.py3-none-any.whl (65 kB)
-     ---------------------------------------- 65.6/65.6 kB 1.8 MB/s eta 0:00:00
-Collecting frozendict&gt;=2.3.4
-  Downloading frozendict-2.3.8-cp310-cp310-win_amd64.whl (35 kB)
-Collecting multitasking&gt;=0.0.7
-  Downloading multitasking-0.0.11-py3-none-any.whl (8.5 kB)
-Collecting beautifulsoup4&gt;=4.11.1
-  Downloading beautifulsoup4-4.12.2-py3-none-any.whl (142 kB)
-     -------------------------------------- 143.0/143.0 kB 2.1 MB/s eta 0:00:00
-Requirement already satisfied: numpy&gt;=1.16.5 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (1.23.3)
-Requirement already satisfied: pandas&gt;=1.3.0 in c:\users\princ\appdata\roaming\python\python310\site-packages (from yfinance) (1.5.0)
-Requirement already satisfied: lxml&gt;=4.9.1 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (4.9.3)
-Collecting peewee&gt;=3.16.2
-  Downloading peewee-3.16.3.tar.gz (928 kB)
-     -------------------------------------- 928.0/928.0 kB 3.1 MB/s eta 0:00:00
-  Installing build dependencies: started
-  Installing build dependencies: finished with status 'done'
-  Getting requirements to build wheel: started
-  Getting requirements to build wheel: finished with status 'done'
-  Preparing metadata (pyproject.toml): started
-  Preparing metadata (pyproject.toml): finished with status 'done'
-Collecting html5lib&gt;=1.1
-  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
-     -------------------------------------- 112.2/112.2 kB 3.3 MB/s eta 0:00:00
-Collecting pytz&gt;=2022.5
-  Downloading pytz-2023.3.post1-py2.py3-none-any.whl (502 kB)
-     -------------------------------------- 502.5/502.5 kB 3.9 MB/s eta 0:00:00
-Requirement already satisfied: requests&gt;=2.31 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from yfinance) (2.31.0)
-Collecting appdirs&gt;=1.4.4
-  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
-Collecting soupsieve&gt;1.2
-  Downloading soupsieve-2.5-py3-none-any.whl (36 kB)
-Collecting webencodings
-  Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
-Requirement already satisfied: six&gt;=1.9 in c:\users\princ\appdata\roaming\python\python310\site-packages (from html5lib&gt;=1.1-&gt;yfinance) (1.16.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in c:\users\princ\appdata\roaming\python\python310\site-packages (from pandas&gt;=1.3.0-&gt;yfinance) (2.8.2)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.4)
-Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2023.7.22)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (2.0.6)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\princ\appdata\local\programs\python\python310\lib\site-packages (from requests&gt;=2.31-&gt;yfinance) (3.3.0)
-Building wheels for collected packages: peewee
-  Building wheel for peewee (pyproject.toml): started
-  Building wheel for peewee (pyproject.toml): finished with status 'done'
-  Created wheel for peewee: filename=peewee-3.16.3-py3-none-any.whl size=135547 sha256=63b9a00b0b96d1abc7e0eeace693565d65e28081ef97370aea23a0ab3491665e
-  Stored in directory: c:\users\princ\appdata\local\pip\cache\wheels\c8\ac\6d\ad6d828725ffbe3abc508c95d25dd0c5fcc63539ae47913790
-Successfully built peewee
-Installing collected packages: webencodings, pytz, peewee, multitasking, appdirs, soupsieve, html5lib, frozendict, beautifulsoup4, yfinance
-  Attempting uninstall: pytz
-    Found existing installation: pytz 2022.4
-    Uninstalling pytz-2022.4:
-      Successfully uninstalled pytz-2022.4
-Successfully installed appdirs-1.4.4 beautifulsoup4-4.12.2 frozendict-2.3.8 html5lib-1.1 multitasking-0.0.11 peewee-3.16.3 pytz-2023.3.post1 soupsieve-2.5 webencodings-0.5.1 yfinance-0.2.31</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-[notice] A new release of pip available: 22.2.2 -&gt; 23.2.1
-[notice] To update, run: python.exe -m pip install --upgrade pip</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[*********************100%%**********************]  1 of 1 completed</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-1 Failed download:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>['AAPL']: Exception('%ticker%: No timezone found, symbol may be delisted')</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[*********************100%%**********************]  1 of 1 completed</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-1 Failed download:</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>['GM']: Exception('%ticker%: No timezone found, symbol may be delisted')</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p><strong>2.1 Data Variables Description</strong></p>
-<p>Several variables are retrieved for each stock. The definitions for the variables are as follows :</p>
-<p><strong>Date</strong> : This represents the date associated with each data point, such as daily stock prices.</p>
-<p><strong>Open</strong> : The stock price at the time of opening on a given trading day</p>
-<p><strong>Close</strong> : The stock price at the time of closing on a given trading day</p>
-<p><strong>High</strong> : The highest stock price reached on a given day.</p>
-<p><strong>Low</strong> : The lowest stock price reached on a given day.</p>
-<p><strong>Dividends</strong> : The amount of dividends paid to shareholders.</p>
-<p><strong>Split ratio</strong> : If there have been stock splits, this variable indicates the split ratio.</p>
+<p>This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the New York Stock Exchange. That company is Apple, and we chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we’ll also compare the results to a second company also traded on the NYSE, General Motors.</p>
+<p>We decided to pull data going back the last 5 years, although this was an arbitrary decision. The data is sourced from Yahoo Finance using the yfinance package in python. yfinance is an open-source package that uses Yahoo Finance’s publicly available APIs to download market data.</p>
+<p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NYSE is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.</p>
+<section id="standard-variables" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="standard-variables"><span class="header-section-number">2.1</span> Standard Variables</h2>
+<p><strong>Date</strong> : This represents a specific trading day that the market was at least partially open.</p>
+<p><strong>Open</strong> : The price at the time of market opening on the given day.</p>
+<p><strong>High</strong> : The highest price that the stock reached on the given day.</p>
+<p><strong>Low</strong> : The lowest price that the stock reached on the given day.</p>
+<p><strong>Close</strong> : The price at the time of market closing on the given day.</p>
 <p><strong>Adj Close</strong> : The closing stock price adjusted for any corporate actions such as dividends and stock splits.</p>
-<p><strong>Volume</strong> : The total number of shares traded on a given day.</p>
-<p><strong>Market Capitalization</strong> : The total market value of the market’s shares.</p>
-<p>In addition to the variables to the above variables, we are also going to add two more variables.</p>
-<p><strong>PCT Change</strong> - this calculates the percentage change of the closing price.</p>
-<p><strong>Moving Average</strong> - this variable will represent the average change of closing price for the series.</p>
-<p><strong>2.2 Data Visualizations</strong></p>
+<p><strong>Volume</strong> : The total number of shares traded on the given day.</p>
+<p><img src="head.png" class="img-fluid"></p>
+<p>Table 1: Preview of the first 5 rows of the dataset</p>
+</section>
+<section id="additional-variables" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="additional-variables"><span class="header-section-number">2.2</span> Additional Variables</h2>
+<p>In addition to the variables to the standard variables fetched from the Yahoo Finance API, we created four of our own columns to add to the dataset.</p>
+<p><strong>Company Name</strong> : This variable simply denotes the company name that the data set belongs to.</p>
+<p><strong>Percent Change</strong> : This variable calculates what percent the price changed from the previous closing price.</p>
+<p>It’s important because we are trying to predict what percent the price will shift.</p>
+<p>The percent change variable was created using the pandas “pct_change” command, applying it to the closing price only going back one period, thus creating a variable showing what percent the price moved each trading day, compared to the previous trading day.</p>
+<p><code>AAPL['pct_change'] = AAPL.Close.pct_change(periods = 1)</code></p>
+<p><strong>Simple Moving Average</strong> : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods. We created the SMA going back 20 time periods, so that each value represents the average closing price of the last 20 trading days.</p>
+<p>This variable was created by using the pandas “rolling” command going back 20 periods. Because the first 19 days of the dataset (the oldest ones) do not have 20 previous periods to look to, they will instead have NULL values. We’ll drop those 19 rows so that our dataset contains no null values.</p>
+<p><code>AAPL['SMA20'] = AAPL['Close'].rolling(20).mean()</code></p>
+<p><strong>Exponential Moving Average</strong> : Given that we are trying to predict the price change of a stock in the short-term, exponential weighted moving averages (EMA) provide a benefit that SMA’s do not. We can generally assume that tomorrow’s stock price for a given company is going to be influenced by today’s closing price as compared to the closing price 20 days ago, SMA’s contain an inherent weakness for our analysis. SMA’s weigh each price point the same, so that in a 20 series average, each price point is weighed at an even 5%. EMA’s give additional weight to the most recent days, so day 20 will have a higher weight than day 19, which will have a higher weight than day 18, and so on.</p>
+<p>This variable was created by using the pandas “ewm” command going back 20 periods.</p>
+<p><code>AAPL['EMA20'] = AAPL['Close'].ewm(span=20).mean()</code></p>
+</section>
+<section id="data-summary-visualizations" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="data-summary-visualizations"><span class="header-section-number">2.3</span> Data Summary &amp; Visualizations</h2>
+<p>We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas “info” command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.</p>
+<p><img src="info.png" class="img-fluid"></p>
+<p>Graphic 1: Dataframe information of the dataset</p>
+<p>By running the “describe” function, we can get a better idea of our dataset.</p>
+<p><img src="describe.png" class="img-fluid"></p>
+<p>Table 2: Summary statistics of the dataset</p>
+<p>During our five-year period, Apple’s closing price has ranged from $34.16 to $196.19, with the mean closing price being $117.78 and the median closing price at $130.86.</p>
+<p>When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.</p>
+<p><img src="prices.png" class="img-fluid"></p>
+<p>Graphic 2: Closing price by day for AAPL</p>
+<p>From the “describe” function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.</p>
+<p><img src="histogram.png" class="img-fluid"></p>
+<p>Graphic 3: Histogram of the daily percent change for AAPL</p>
+<p>The histogram shows that the data is pretty evenly distributed, with a slight right tail.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
