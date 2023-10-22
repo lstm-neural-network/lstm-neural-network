@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -146,6 +146,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>This is the methodology section</p>
+<p><strong>3.1</strong></p>
+<p><strong>3.2</strong></p>
+<p><strong>3.3 Implementation</strong> Our LSTM model for this project will be implemented in Python using the scikit-learn machine learning library and the Keras package. Keras is a high-level, deep learning API developed by Google for implementing neural networks built on top of the TensowFlow platform. Scikit-learn will be used to prepare our numeric dataset for an LSTM network, and to split our data into an 80/20 training set and testing set. The data must be scaled to achieve the best results. Large inputs tend to slow down the learning convergence. We have two options for scaling our data, normalization, and standardization. Normalization takes our data and outputs it in range between [0-1]. Standardization re-scales our data so that the mean is 0 and the standard deviation equals 1. For this project we will implement normalization. We will accomplish this by importing MinMaxScaler from the sklearn.preprocessing library. We will then create a MinMaxScaler object defining a range between 0-1, and lastly run the fit_transform method on our data set. To split our data, we will create 4 variables, LSTM_Xtrain, LSTM_Xtest, LSTM_ytrain, and LSTM_ytest to hold our training/testing sets. This will be done using the train_test_split() method that is part of the Scikit-learn library.</p>
 
 
 
