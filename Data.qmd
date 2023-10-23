@@ -7,11 +7,11 @@ jupyter: python3
 
 # Data
 
-This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we'll be using historical time-series data for Apple, a corporation listed on the New York Stock Exchange. That company is Apple, and we chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we'll also compare the results to a second company also traded on the NYSE, General Motors.
+This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we'll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange. We chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we'll also compare the results to a second company, General Motors, which is traded on the New York Stock Exchange.
 
 We decided to pull data going back the last 5 years, although this was an arbitrary decision. The data is sourced from Yahoo Finance using the yfinance package in python. yfinance is an open-source package that uses Yahoo Finance's publicly available APIs to download market data.
 
-The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NYSE is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.
+The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NASDAQ is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.
 
 ## Standard Variables
 
@@ -29,9 +29,9 @@ The resulting data file is relatively simple, comprised of only seven columns, w
 
 **Volume** : The total number of shares traded on the given day.
 
-![](head.png)
+![](head.png){fig-align="center" width="542"}
 
-Table 1: Preview of the first 5 rows of the dataset
+[Table 1: Preview of the first 5 rows of the dataset]{.smallcaps}
 
 ## Additional Variables
 
@@ -63,28 +63,28 @@ This variable was created by using the pandas "ewm" command going back 20 period
 
 We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas "info" command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.
 
-![](info.png)
+![](info.png){fig-align="center" width="267"}
 
-Graphic 1: Dataframe information of the dataset
+[Figure 1: Dataframe information of the dataset]{.smallcaps}
 
 By running the "describe" function, we can get a better idea of our dataset.
 
-![](describe.png)
+![](describe.png){fig-align="center" width="485"}
 
-Table 2: Summary statistics of the dataset
+[Table 2: Summary statistics of the dataset]{.smallcaps}
 
 During our five-year period, Apple's closing price has ranged from \$34.16 to \$196.19, with the mean closing price being \$117.78 and the median closing price at \$130.86.
 
 When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.
 
-![](prices.png)
+![](prices.png){fig-align="center" width="464"}
 
-Graphic 2: Closing price by day for AAPL
+[Figure 2: Closing price by day for AAPL]{.smallcaps}
 
 From the "describe" function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.
 
-![](histogram.png)
+![](histogram.png){fig-align="center" width="465"}
 
-Graphic 3: Histogram of the daily percent change for AAPL
+[Figure 3: Histogram of the daily percent change for AAPL]{.smallcaps}
 
 The histogram shows that the data is pretty evenly distributed, with a slight right tail.
