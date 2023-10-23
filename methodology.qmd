@@ -18,7 +18,7 @@ There are various activation functions and their usefulness depends on various f
 
 ![](af.png){fig-align="center" width="442"}
 
-[Figure 5: An illustration of a three most popular activation functions.]{.smallcaps}
+[Figure 5: An illustration of the three most popular activation functions.]{.smallcaps}
 
 ### Recurrent Neural Networks
 
