@@ -153,9 +153,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the New York Stock Exchange. That company is Apple, and we chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we’ll also compare the results to a second company also traded on the NYSE, General Motors.</p>
+<p>This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange. We chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we’ll also compare the results to a second company, General Motors, which is traded on the New York Stock Exchange.</p>
 <p>We decided to pull data going back the last 5 years, although this was an arbitrary decision. The data is sourced from Yahoo Finance using the yfinance package in python. yfinance is an open-source package that uses Yahoo Finance’s publicly available APIs to download market data.</p>
-<p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NYSE is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.</p>
+<p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NASDAQ is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.</p>
 <section id="standard-variables" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="standard-variables"><span class="header-section-number">2.1</span> Standard Variables</h2>
 <p><strong>Date</strong> : This represents a specific trading day that the market was at least partially open.</p>
@@ -165,8 +165,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Close</strong> : The price at the time of market closing on the given day.</p>
 <p><strong>Adj Close</strong> : The closing stock price adjusted for any corporate actions such as dividends and stock splits.</p>
 <p><strong>Volume</strong> : The total number of shares traded on the given day.</p>
-<p><img src="head.png" class="img-fluid"></p>
-<p>Table 1: Preview of the first 5 rows of the dataset</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="head.png" class="img-fluid figure-img" width="542"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Table 1: Preview of the first 5 rows of the dataset</span></p>
 </section>
 <section id="additional-variables" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="additional-variables"><span class="header-section-number">2.2</span> Additional Variables</h2>
@@ -186,18 +190,34 @@ ul.task-list li input[type="checkbox"] {
 <section id="data-summary-visualizations" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="data-summary-visualizations"><span class="header-section-number">2.3</span> Data Summary &amp; Visualizations</h2>
 <p>We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas “info” command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.</p>
-<p><img src="info.png" class="img-fluid"></p>
-<p>Graphic 1: Dataframe information of the dataset</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="info.png" class="img-fluid figure-img" width="267"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 1: Dataframe information of the dataset.</span></p>
 <p>By running the “describe” function, we can get a better idea of our dataset.</p>
-<p><img src="describe.png" class="img-fluid"></p>
-<p>Table 2: Summary statistics of the dataset</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="describe.png" class="img-fluid figure-img" width="485"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Table 2: Summary statistics of the dataset</span></p>
 <p>During our five-year period, Apple’s closing price has ranged from $34.16 to $196.19, with the mean closing price being $117.78 and the median closing price at $130.86.</p>
 <p>When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.</p>
-<p><img src="prices.png" class="img-fluid"></p>
-<p>Graphic 2: Closing price by day for AAPL</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="prices.png" class="img-fluid figure-img" width="464"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 2: Closing price by day for AAPL</span></p>
 <p>From the “describe” function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.</p>
-<p><img src="histogram.png" class="img-fluid"></p>
-<p>Graphic 3: Histogram of the daily percent change for AAPL</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="histogram.png" class="img-fluid figure-img" width="465"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 3: Histogram of the daily percent change for AAPL</span></p>
 <p>The histogram shows that the data is pretty evenly distributed, with a slight right tail.</p>
 
 
