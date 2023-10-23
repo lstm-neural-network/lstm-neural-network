@@ -65,7 +65,7 @@ We know that outside of the date variable, which acts as the index for this data
 
 ![](info.png){fig-align="center" width="267"}
 
-[Figure 1: Dataframe information of the dataset]{.smallcaps}
+[Figure 1: Dataframe information of the dataset.]{.smallcaps}
 
 By running the "describe" function, we can get a better idea of our dataset.
 
