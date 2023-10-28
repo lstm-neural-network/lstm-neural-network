@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.2.475">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#recurrent-neural-networks" id="toc-recurrent-neural-networks" class="nav-link" data-scroll-target="#recurrent-neural-networks"><span class="toc-section-number">3.1.1</span>  Recurrent Neural Networks</a></li>
   </ul></li>
-  <li><a href="#section-3.2" id="toc-section-3.2" class="nav-link" data-scroll-target="#section-3.2"><span class="toc-section-number">3.2</span>  Section 3.2</a></li>
+  <li><a href="#long-short-term-memory" id="toc-long-short-term-memory" class="nav-link" data-scroll-target="#long-short-term-memory"><span class="toc-section-number">3.2</span>  Long Short-Term Memory</a></li>
   <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="toc-section-number">3.3</span>  Implementation</a></li>
   </ul>
 </nav>
@@ -189,8 +189,25 @@ ul.task-list li input[type="checkbox"] {
 <p>This problem presents itself any time the weight is greater than 1. If you set the weight to below 1, you run into the opposite problem. Using the same stock market prediction, an example weight of 0.5 would then be multiplied to the 100th power, resulting in a number so small that it’s essentially zero. This causes the gradient descent to take steps that too small, never allowing it to find the best parameter values for the network, resulting in a vanishing gradient [8].</p>
 </section>
 </section>
-<section id="section-3.2" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="section-3.2"><span class="header-section-number">3.2</span> Section 3.2</h2>
+<section id="long-short-term-memory" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="long-short-term-memory"><span class="header-section-number">3.2</span> Long Short-Term Memory</h2>
+<p>LSTMs are an improvement on the standard RNN models desgined to deal with more complex problems. Unlike a traditional RNN (which also involve a loop),they are able to handle long-term dependencies.. LSTMs were specifically designed to overcome the issues that come with training other RNNs such as vanishing and exploding gradient issues. In order to make the required prediction, they need to process not just individual data points but the entire sequence of data.They are composed of four components; the cell,input gate, the output gate and a forget gate [1].</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lstm illustration.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">AN ILLUSTRATION OF LSTM NETWORK</figcaption><p></p>
+</figure>
+</div>
+<p>The gates are responsible for processing and regulating the information flowing in and out of the cell. The cell state carries the relevant information during the process of the sequence. Information is continually added to and removed from cell through the gates. The gates determine which information is important to keep or forget during the process.</p>
+<p>The forget gate is responsible for discarding the information which is not gonna used in the next steps. It determines which information from the previous cell state is retained[9]. The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.Therefore this means that the closer the value is to 1, the more likely it is to be kept. The input gate charge of choosing which new data points to include in the cell state at a certain time step [9]. The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function. The output gate decides which cell state data should be carried over to the following time step and added to the network’s output[9]. It makes use of a sigmoid activation function and is essential to the LSTM’s capacity to provide outputs that are aware of context.</p>
+<p>The sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a typical LSTM network. Within the network, these activation functions are used to manage information flow and determine what should be updated, remembered, and forgotten.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/activation functions-01.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">AN ILLUSTRATION OF ACTIVATION FUNCTIONS USED BY LSTM NETWORKS</figcaption><p></p>
+</figure>
+</div>
+<p>The sigmoid function is employed in the input, output and forget gates. In the input gate it is used to calculate the values from the current input and the previous hidden state to be between 0 and 1. In the forget gate, it calculates the input from the previous hidden state and current input . In the output gate, the sigmoid function also calculates the values of the current input and previous hidden state to produce the output . The tanh function is specifically employed in the output gate to determine which information from the cell state is going to be included in the hidden state and eventually in the network's output .</p>
 </section>
 <section id="implementation" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">3.3</span> Implementation</h2>
