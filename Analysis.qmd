@@ -49,7 +49,7 @@ y = LSTM_scaled[:,1]
 #replacing the nan value with the mean
 y[0] = y[1:].mean()
 
-#Dropping the first column with Nan and the y from the features
+#Dropping the y from the features
 LSTM_scaled = np.delete(LSTM_scaled, 2, axis=1)
 
 from sklearn.model_selection import train_test_split
