@@ -12,6 +12,7 @@ book:
     - intro.qmd
     - Data.qmd
     - methodology.qmd
+    - Analysis.qmd
     - references.qmd
 
 bibliography: references.bib
