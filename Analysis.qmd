@@ -1,16 +1,17 @@
 ## Analysis
 
+''' #Downloading the Data
 
-'''
-#Downloading the Data
 ```{python}
-
-
+!pip install tensorflow
+!pip install keras
+!pip install matplotlib
 
 import yfinance as yf
 from datetime import datetime
 import pandas as pd
 import numpy as np
+import matplotlib
 
 #Stocks that we'll be analyzing
 AAPL = ['AAPL']
@@ -30,37 +31,28 @@ AAPL['EMA20'] = AAPL['Close'].ewm(span=20).mean()
 
 AAPL.head(10)
 
-#Dropping unnecessary columns
-AAPL = AAPL.drop(columns= ['Open', 'Low', 'Adj Close', 'High'])
-AAPL.head(10)
+#Correlation Analysis 
+correlation = AAPL.corr()
+print(correlation['Close'].sort_values(ascending=False))
 
+#Defining X and y variable
+X = AAPL[['Open','High', 'Low', 'Volume']]
+X.head(10)
+y = AAPL['Close']
+y.head(10)
 
-# Normalizing our data set
-from sklearn.preprocessing import MinMaxScaler
-LSTM_scaler = MinMaxScaler(feature_range=(0, 1))
-LSTM_scaled = LSTM_scaler.fit_transform(AAPL)
-print(LSTM_scaled[:10])
+#Converting to array
+X = X.to_numpy()
+y = y.to_numpy()
+
 
 #Splitting our data into 80/20 training/testing sets
-
-#Assigning the target variable
-y = LSTM_scaled[:,1]
-
-#replacing the nan value with the mean
-y[0] = y[1:].mean()
-
-#Dropping the y from the features
-LSTM_scaled = np.delete(LSTM_scaled, 2, axis=1)
-
 from sklearn.model_selection import train_test_split
-LSTM_Xtrain, LSTM_Xtest, LSTM_ytrain, LSTM_ytest = train_test_split(LSTM_scaled, y, test_size=0.2, random_state=1)
-
-
-LSTM_Xtrain = LSTM_Xtrain.reshape((LSTM_Xtrain.shape[0],1,LSTM_Xtrain.shape[1]))
-LSTM_Xtest = LSTM_Xtest.reshape((LSTM_Xtest.shape[0],1,LSTM_Xtest.shape[1]))
+LSTM_Xtrain, LSTM_Xtest, LSTM_ytrain, LSTM_ytest = train_test_split(X, y, test_size=0.2, random_state=1)
 
 print(LSTM_Xtrain)
-#model 
+
+# Stacked LSTM model 
 
 import tensorflow as tf
 import keras as ke
@@ -68,18 +60,39 @@ from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Dropout
 LSTM_model = ke.Sequential()
-LSTM_model.add(LSTM(500, return_sequences=True, dropout=0.2, input_shape=(LSTM_Xtrain.shape[1], LSTM_Xtrain.shape[-1])))
-#LSTM_model.add(Dropout(0.2))
-LSTM_model.add(Dense(1, activation='linear'))
-LSTM_model.compile(optimizer='adam' , loss= 'mean_squared_error', metrics=['accuracy'])
+LSTM_model.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain.shape[1], 1)))
+LSTM_model.add(LSTM(64, return_sequences=False))
+LSTM_model.add(Dense(25, activation='linear'))
+LSTM_model.add(Dense(1))
+
+LSTM_model.summary()
+
+LSTM_model.compile(optimizer='rmsprop' , loss= 'mean_squared_error', metrics=['accuracy'])
 
 LSTM_model.fit(LSTM_Xtrain, LSTM_ytrain, batch_size=32, epochs=150)  
 
 loss, accuracy = LSTM_model.evaluate(LSTM_Xtest, LSTM_ytest)
 predictions = LSTM_model.predict(LSTM_Xtest)
 
-print(predictions)
-print(LSTM_ytest)
+predictions.reshape(252,)
+
+#Predict 11/03/23 price = $177.57
+In_features = np.array([[175.52, 177.78, 175.46, 76083900]])
+LSTM_model.predict(In_features)
+print("The predicted stock price for 11/03/23 is $ ", LSTM_model.predict(In_features),".", " The actual stock price for 11/03/23 is $177.57")
+
+#Plot the first 50 predictions vs the actual y values
+import matplotlib.pyplot as plt
+LSTM_ytest = LSTM_ytest.reshape(252, 1)
+
+plt.plot(LSTM_ytest[:50], 'red', label = 'AAPL Stock Price')
+plt.plot(predictions[:50], color = 'green', label = 'Predicted AAPL Stock Price')
+plt.title('AAPL Stock Price Prediction')
+plt.xlabel('Time')
+plt.ylabel('AAPL Stock Price')
+plt.legend()
+plt.show()
+
 
 
 ```
