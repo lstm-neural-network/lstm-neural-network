@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>LSTM Recurrent Neural Networks - 2&nbsp; Data</title>
+<title>LSTM Recurrent Neural Networks - 5&nbsp; Conclusion</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./methodology.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./Analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></a>
+  <a href="./Data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
+  <a href="./Conclusion.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -133,22 +133,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#standard-variables" id="toc-standard-variables" class="nav-link active" data-scroll-target="#standard-variables"><span class="toc-section-number">2.1</span>  Standard Variables</a></li>
-  <li><a href="#additional-variables" id="toc-additional-variables" class="nav-link" data-scroll-target="#additional-variables"><span class="toc-section-number">2.2</span>  Additional Variables</a></li>
-  <li><a href="#data-summary-visualizations" id="toc-data-summary-visualizations" class="nav-link" data-scroll-target="#data-summary-visualizations"><span class="toc-section-number">2.3</span>  Data Summary &amp; Visualizations</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></h1>
 </div>
 
 
@@ -163,75 +155,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This project will be focused on predicting the percent price change on a given day from historical financial data markets. For this analysis, we’ll be using historical time-series data for Apple, a corporation listed on the NASDAQ Stock Exchange. We chose Apple due to its high trading volume and relatively low volatility. At the end of our analysis, we’ll also compare the results to a second company, General Motors, which is traded on the New York Stock Exchange.</p>
-<p>We decided to pull data going back the last 5 years, although this was an arbitrary decision. The data is sourced from Yahoo Finance using the yfinance package in python. yfinance is an open-source package that uses Yahoo Finance’s publicly available APIs to download market data.</p>
-<p>The resulting data file is relatively simple, comprised of only seven columns, with each row representing an individual trading day going back to five years. The NASDAQ is only open on weekdays, excluding most Federal holidays. Thus, our data set contains 1,257 trading days, the amount of days in the last five years the stock market was at least partially open.</p>
-<section id="standard-variables" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="standard-variables"><span class="header-section-number">2.1</span> Standard Variables</h2>
-<p><strong>Date</strong> : This represents a specific trading day that the market was at least partially open.</p>
-<p><strong>Open</strong> : The price at the time of market opening on the given day.</p>
-<p><strong>High</strong> : The highest price that the stock reached on the given day.</p>
-<p><strong>Low</strong> : The lowest price that the stock reached on the given day.</p>
-<p><strong>Close</strong> : The price at the time of market closing on the given day.</p>
-<p><strong>Adj Close</strong> : The closing stock price adjusted for any corporate actions such as dividends and stock splits.</p>
-<p><strong>Volume</strong> : The total number of shares traded on the given day.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="head.png" class="img-fluid figure-img" width="542"></p>
-</figure>
-</div>
-<p><span class="smallcaps">Table 1: Preview of the first 5 rows of the dataset</span></p>
-</section>
-<section id="additional-variables" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="additional-variables"><span class="header-section-number">2.2</span> Additional Variables</h2>
-<p>In addition to the variables to the standard variables fetched from the Yahoo Finance API, we created four of our own columns to add to the dataset.</p>
-<p><strong>Company Name</strong> : This variable simply denotes the company name that the data set belongs to.</p>
-<p><strong>Percent Change</strong> : This variable calculates what percent the price changed from the previous closing price.</p>
-<p>It’s important because we are trying to predict what percent the price will shift.</p>
-<p>The percent change variable was created using the pandas “pct_change” command, applying it to the closing price only going back one period, thus creating a variable showing what percent the price moved each trading day, compared to the previous trading day.</p>
-<p><code>AAPL['pct_change'] = AAPL.Close.pct_change(periods = 1)</code></p>
-<p><strong>Simple Moving Average</strong> : A simple moving average (SMA) is created by taking the mean closing price of a stock over a given number of periods. We created the SMA going back 20 time periods, so that each value represents the average closing price of the last 20 trading days.</p>
-<p>This variable was created by using the pandas “rolling” command going back 20 periods. Because the first 19 days of the dataset (the oldest ones) do not have 20 previous periods to look to, they will instead have NULL values. We’ll drop those 19 rows so that our dataset contains no null values.</p>
-<p><code>AAPL['SMA20'] = AAPL['Close'].rolling(20).mean()</code></p>
-<p><strong>Exponential Moving Average</strong> : Given that we are trying to predict the price change of a stock in the short-term, exponential weighted moving averages (EMA) provide a benefit that SMA’s do not. We can generally assume that tomorrow’s stock price for a given company is going to be influenced by today’s closing price as compared to the closing price 20 days ago, SMA’s contain an inherent weakness for our analysis. SMA’s weigh each price point the same, so that in a 20 series average, each price point is weighed at an even 5%. EMA’s give additional weight to the most recent days, so day 20 will have a higher weight than day 19, which will have a higher weight than day 18, and so on.</p>
-<p>This variable was created by using the pandas “ewm” command going back 20 periods.</p>
-<p><code>AAPL['EMA20'] = AAPL['Close'].ewm(span=20).mean()</code></p>
-</section>
-<section id="data-summary-visualizations" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="data-summary-visualizations"><span class="header-section-number">2.3</span> Data Summary &amp; Visualizations</h2>
-<p>We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas “info” command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="info.png" class="img-fluid figure-img" width="267"></p>
-</figure>
-</div>
-<p><span class="smallcaps">Figure 1: Dataframe information of the dataset.</span></p>
-<p>By running the “describe” function, we can get a better idea of our dataset.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="describe.png" class="img-fluid figure-img" width="485"></p>
-</figure>
-</div>
-<p><span class="smallcaps">Table 2: Summary statistics of the dataset</span></p>
-<p>During our five-year period, Apple’s closing price has ranged from $34.16 to $196.19, with the mean closing price being $117.78 and the median closing price at $130.86.</p>
-<p>When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="prices.png" class="img-fluid figure-img" width="464"></p>
-</figure>
-</div>
-<p><span class="smallcaps">Figure 2: Closing price by day for AAPL</span></p>
-<p>From the “describe” function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="histogram.png" class="img-fluid figure-img" width="465"></p>
-</figure>
-</div>
-<p><span class="smallcaps">Figure 3: Histogram of the daily percent change for AAPL</span></p>
-<p>The histogram shows that the data is pretty evenly distributed, with a slight right tail.</p>
+<p>Conclusion section</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -369,13 +295,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./Analysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./methodology.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Methodology</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

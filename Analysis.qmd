@@ -143,7 +143,7 @@ plt.close()
 
 **GM Stock Price Prediction**
 
-```{python echo=FALSE}
+```{python echo=TRUE}
 plt.plot(LSTM_ytest2[:50], 'red', label = 'GM Stock Price')
 plt.plot(predictions2[:50], color = 'green', label = 'Predicted GM Stock Price')
 plt.title('GM Stock Price Prediction')
@@ -157,7 +157,7 @@ plt.close()
 
 **Training loss for Apple**
 
-```{python }
+```{python echo=TRUE}
 plt.close()
 plt.plot(history1.history['loss'], label='Loss')
 plt.title('Training Loss for Apple')
@@ -172,7 +172,7 @@ plt.close()
 
 **Training loss plot for GM**
 
-```{python }
+```{python echo=TRUE}
 plt.close()
 plt.plot(history2.history['loss'], label='Loss')
 plt.title('Training Loss for GM')
