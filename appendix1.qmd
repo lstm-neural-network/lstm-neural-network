@@ -1,0 +1,188 @@
+# Appendix
+
+## Downloading the Data
+
+```{python include=FALSE}
+#!pip install tensorflow
+#!pip install keras
+#!pip install matplotlib
+
+import yfinance as yf
+from datetime import datetime
+import pandas as pd
+import numpy as np
+import matplotlib
+
+#Stocks that we'll be analyzing
+AAPL = ['AAPL']
+GM = ['GM']
+
+#Set start and end date for the data pull
+#We want to look at the past 5 years, so we'll pull the previous 5 years of data
+end_time = datetime.now()
+start_time = datetime(end_time.year - 5, end_time.month, end_time.day)
+
+#download the stocks we want to model 
+AAPL = yf.download(AAPL, start_time, end_time)
+GM = yf.download(GM, start_time, end_time)
+
+
+#Adding additional columns
+AAPL['pct_change'] = AAPL.Close.pct_change(periods = 1)
+AAPL['EMA20'] = AAPL['Close'].ewm(span=20).mean()
+
+GM['pct_change'] = GM.Close.pct_change(periods = 1)
+GM['EMA20'] = GM['Close'].ewm(span=20).mean()
+
+#AAPL.head(10)
+```
+
+## Correlation Analysis 
+```{python include=FALSE}
+#correlation = AAPL.corr()
+#print(correlation['Close'].sort_values(ascending=False))
+```
+
+## Defining X and y
+```{python include=FALSE}
+X1 = AAPL[['Open','High', 'Low', 'Volume']]
+X1.head(10)
+y1 = AAPL['Close']
+y1.head(10)
+
+X2 = GM[['Open','High', 'Low', 'Volume']]
+X2.head(10)
+y2 = GM['Close']
+y2.head(10)
+
+#Converting to array
+X1 = X1.to_numpy()
+y1 = y1.to_numpy()
+
+X2 = X2.to_numpy()
+y2 = y2.to_numpy()
+```
+
+## Train/Test Split
+```{python include=FALSE}
+from sklearn.model_selection import train_test_split
+LSTM_Xtrain1, LSTM_Xtest1, LSTM_ytrain1, LSTM_ytest1 = train_test_split(X1, y1, test_size=0.2, random_state=1)
+
+LSTM_Xtrain2, LSTM_Xtest2, LSTM_ytrain2, LSTM_ytest2 = train_test_split(X2, y2, test_size=0.2, random_state=1)
+
+print(LSTM_Xtrain1)
+print(LSTM_Xtrain2)
+```
+
+## Stacked LSTM model 
+```{python include=FALSE}
+import tensorflow as tf
+import keras as ke
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout
+```
+
+## AAPL and GM Models
+```{python include=FALSE}
+LSTM_modelApple = ke.Sequential()
+LSTM_modelApple.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain1.shape[1], 1)))
+LSTM_modelApple.add(LSTM(64, return_sequences=False))
+LSTM_modelApple.add(Dense(25, activation='linear'))
+LSTM_modelApple.add(Dense(1))
+
+LSTM_modelGM = ke.Sequential()
+LSTM_modelGM.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain2.shape[1], 1)))
+LSTM_modelGM.add(LSTM(64, return_sequences=False))
+LSTM_modelGM.add(Dense(25, activation='linear'))
+LSTM_modelGM.add(Dense(1))
+```
+
+## Model Summary
+```{python include=FALSE}
+LSTM_modelApple.summary()
+LSTM_modelGM.summary()
+```
+
+## Loss Function
+```{python include=FALSE}
+LSTM_modelApple.compile(optimizer='rmsprop' , loss= 'mean_squared_error')
+
+LSTM_modelGM.compile(optimizer='rmsprop' , loss= 'mean_squared_error')
+```
+
+## Model Fit
+```{python include=FALSE}
+history1 = LSTM_modelApple.fit(LSTM_Xtrain1, LSTM_ytrain1, batch_size=32, epochs=10)
+history2 = LSTM_modelGM.fit(LSTM_Xtrain2, LSTM_ytrain2, batch_size=32,epochs=10)
+
+loss_test1= LSTM_modelApple.evaluate(LSTM_Xtest1, LSTM_ytest1)
+loss_test2 = LSTM_modelApple.evaluate(LSTM_Xtest2, LSTM_ytest2)
+```
+
+## Predictions
+```{python include=FALSE}
+
+predictions1 = LSTM_modelApple.predict(LSTM_Xtest1)
+predictions1.reshape(252,)
+
+predictions2 = LSTM_modelGM.predict(LSTM_Xtest2)
+predictions2.reshape(252,)
+
+In_featuresApple = np.array([[175.52, 177.78, 175.46, 76083900]])
+LSTM_modelApple.predict(In_featuresApple)
+print("The predicted stock price for 11/03/23 is $ ", LSTM_modelApple.predict(In_featuresApple),".", " The actual stock price for 11/03/23 is $177.57")
+```
+
+
+## First 50 Days Plot
+```{python include=FALSE}
+
+import matplotlib.pyplot as plt
+LSTM_ytest1 = LSTM_ytest1.reshape(252, 1)
+LSTM_ytest2 = LSTM_ytest2.reshape(252, 1)
+
+
+plt.plot(LSTM_ytest1[:50], 'red', label = 'AAPL Stock Price')
+plt.plot(predictions1[:50], color = 'green', label = 'Predicted AAPL Stock Price')
+plt.title('AAPL Stock Price Prediction')
+plt.xlabel('Time')
+plt.ylabel('AAPL Stock Price')
+plt.legend()
+plt.show()
+plt.close()
+
+
+plt.plot(LSTM_ytest2[:50], 'red', label = 'GM Stock Price')
+plt.plot(predictions2[:50], color = 'green', label = 'Predicted GM Stock Price')
+plt.title('GM Stock Price Prediction')
+plt.xlabel('Time')
+plt.ylabel('GM Stock Price')
+plt.legend()
+plt.show()
+plt.close()
+
+```
+
+
+## Training Loss
+
+```{python echo=TRUE}
+plt.close()
+plt.plot(history1.history['loss'], label='Loss')
+plt.title('Training Loss for Apple')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+plt.close()
+
+plt.close()
+plt.plot(history2.history['loss'], label='Loss')
+plt.title('Training Loss for GM')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+
+```
