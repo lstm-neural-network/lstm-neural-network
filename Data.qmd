@@ -29,7 +29,7 @@ The resulting data file is relatively simple, comprised of only seven columns, w
 
 **Volume** : The total number of shares traded on the given day.
 
-![](head.png){fig-align="center" width="542"}
+![](images/head.png){fig-align="center" width="542"}
 
 [Table 1: Preview of the first 5 rows of the dataset]{.smallcaps}
 
@@ -63,13 +63,13 @@ This variable was created by using the pandas "ewm" command going back 20 period
 
 We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas "info" command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.
 
-![](info.png){fig-align="center" width="267"}
+![](images/info.png){fig-align="center" width="267"}
 
 [Figure 1: Dataframe information of the dataset.]{.smallcaps}
 
 By running the "describe" function, we can get a better idea of our dataset.
 
-![](describe.png){fig-align="center" width="485"}
+![](images/describe.png){fig-align="center" width="485"}
 
 [Table 2: Summary statistics of the dataset]{.smallcaps}
 
@@ -77,14 +77,24 @@ During our five-year period, Apple's closing price has ranged from \$34.16 to \$
 
 When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.
 
-![](prices.png){fig-align="center" width="464"}
+![](images/prices.png){fig-align="center" width="464"}
 
 [Figure 2: Closing price by day for AAPL]{.smallcaps}
 
 From the "describe" function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.
 
-![](histogram.png){fig-align="center" width="465"}
+![](images/histogram.png){fig-align="center" width="465"}
 
 [Figure 3: Histogram of the daily percent change for AAPL]{.smallcaps}
 
 The histogram shows that the data is pretty evenly distributed, with a slight right tail.
+
+## Correlations
+
+We wanted to see how correlated the variables in our model are. We started by comparing the correlation between our target variable (Close) to the features of our Apple dataset.
+
+From the correlation table below, we see that the many of our feature variables are highly correlated to the target variable. Adjusted Close, Low, High, Open, and EMA20 are positively correlated with our target variable at a tune of 99% or higher. Volume is negatively correlated, which is an indication that on days that the trading volume of the stock is high, the the closing price decreases. PCT_CHANGE, the variable that contains how much the price changed from the previous date, has no correlation with the closing price.
+
+![](images/correlation.png){fig-align="center"}
+
+[Table 3: Correlation between target variable and features]{.smallcaps}

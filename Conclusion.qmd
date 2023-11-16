@@ -1,3 +1,5 @@
 # Conclusion
 
-Conclusion section
+Our LSTM model was able to accurately predict the price of Apple's stock using historical trading data. In our five-year dataset, Apple's stock has had low volatility and has generally trended up throughout that time. We wanted to also test the model on a stock that hasn't performed as well over the last five years, which is why we chose General Motors as a comparison. Whereas Apple's stock has risen over 370% in that timeframe, GM has decreased over 15%, and has seen much more volatility in that time.
+
+Our analysis and results show that LSTM models do hold predictive power when it comes to financial markets, but that further research has to be done to ensure the model isn't simply spitting out numbers that resemble the previous days closing price.

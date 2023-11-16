@@ -1,195 +1,31 @@
-## Analysis
+# Analysis
 
-#Downloading the Data
+## Pre-Processing
 
-```{python include=FALSE}
-#!pip install tensorflow
-#!pip install keras
-#!pip install matplotlib
+Based on the correlation results, we decided to model the Close price of the stock based on variables Open, High, Low, and Volume.
 
-import yfinance as yf
-from datetime import datetime
-import pandas as pd
-import numpy as np
-import matplotlib
+For pre-processing, we experimented with standardizing and normalizing our data, but we found that omitting both pre-processing steps resulted in a model with a lower Mean-Squared Error (MSE). In theory, a stock's price has no upward limit and so bounding it on an interval of the min and max values does not make sense.
 
-#Stocks that we'll be analyzing
-AAPL = ['AAPL']
-GM = ['GM']
+Our next step is to split the data into an 80/20 split using train_test_split from the Scikit-learn library in Python. The 80% subset will be used for training our data and 20% will be used after compiling our model to test our model on unseen data. We decided on the 80/20 split because our original data set has 1,257 observations, which is enough data points to be able to train and test our model. Using the train_test_split method has the added benefit of also shuffling our data which prevents our model from prematurely overfitting to specific patterns in our data set.
 
-#Set start and end date for the data pull
-#We want to look at the past 5 years, so we'll pull the previous 5 years of data
-end_time = datetime.now()
-start_time = datetime(end_time.year - 5, end_time.month, end_time.day)
+## Model Building
 
-#download the stocks we want to model 
-AAPL = yf.download(AAPL, start_time, end_time)
-GM = yf.download(GM, start_time, end_time)
+For our model we first initialize a sequential class from the keras library \[13\] which will serve as the container for our neural network. Keras is built on top of the tensorflow library \[11\] in Python. We then add an LSTM layer with 128 neurons with the parameter 'return_sequences' set to TRUE which will return 128 cells at every time step and will then output 4 states for each step. Essentially this will return the LSTM current state in the hidden layer to be used as input for the next time step in the series.
 
+We then stack another LSTM layer with 64 cells with the 'return_sequences' parameter set to FALSE which will only return the y output in the hidden layer to be used for input in the next time step. Lastly, we add a Dense output layer utilizing the "linear" activation function because our output is linear. Our output layer only utilizes one neuron because we are only interested in predicting the Close price of the stock.
 
-#Adding additional columns
-AAPL['pct_change'] = AAPL.Close.pct_change(periods = 1)
-AAPL['EMA20'] = AAPL['Close'].ewm(span=20).mean()
+![](images/model1.png){fig-align="center" width="442"}
 
-GM['pct_change'] = GM.Close.pct_change(periods = 1)
-GM['EMA20'] = GM['Close'].ewm(span=20).mean()
+[Figure 9: LSTM model output]{.smallcaps}
 
-#AAPL.head(10)
+We compile our model with the 'rmsprop' algorithm which uses backpropagation. We set the epoch to 150, which is the number of times the data will pass through the algorithm to find the optimal weights. Our loss variable is set to MSE, which will be the metric we use for evaluating our model. Next, we fit our model to our test X and test y variables. We get a final output of loss\[MSE\] of 8.6 at epoch 150 on our training subset.
 
-#Correlation Analysis 
-#correlation = AAPL.corr()
-#print(correlation['Close'].sort_values(ascending=False))
+![](images/epoch150.png){fig-align="center" width="442"}
 
-#Defining X and y variable
-X1 = AAPL[['Open','High', 'Low', 'Volume']]
-X1.head(10)
-y1 = AAPL['Close']
-y1.head(10)
+[Figure 10: Result of the 150th epoch]{.smallcaps}
 
-X2 = GM[['Open','High', 'Low', 'Volume']]
-X2.head(10)
-y2 = GM['Close']
-y2.head(10)
+Considering that the min and max features from the dataset is \$37 and \$197 respectively, the sum of the squared difference between our model predictions and actual y values equates to a model that does a good job at predicting the closing price. Furthermore, we can see from the output below (Figure 11) that at the 1st epoch our loss\[MSE\] is 14676.1, but after running 149 more times and updating the weights at each step, it was able to drastically bring down the MSE.
 
-#Converting to array
-X1 = X1.to_numpy()
-y1 = y1.to_numpy()
+![](images/epoch1.png){fig-align="center" width="442"}
 
-X2 = X2.to_numpy()
-y2 = y2.to_numpy()
-
-#Splitting our data into 80/20 training/testing sets
-from sklearn.model_selection import train_test_split
-LSTM_Xtrain1, LSTM_Xtest1, LSTM_ytrain1, LSTM_ytest1 = train_test_split(X1, y1, test_size=0.2, random_state=1)
-
-LSTM_Xtrain2, LSTM_Xtest2, LSTM_ytrain2, LSTM_ytest2 = train_test_split(X2, y2, test_size=0.2, random_state=1)
-
-print(LSTM_Xtrain1)
-print(LSTM_Xtrain2)
-
-# Stacked LSTM model 
-
-import tensorflow as tf
-import keras as ke
-from tensorflow.keras.layers import LSTM
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Dropout
-
-#Apple model
-LSTM_modelApple = ke.Sequential()
-LSTM_modelApple.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain1.shape[1], 1)))
-LSTM_modelApple.add(LSTM(64, return_sequences=False))
-LSTM_modelApple.add(Dense(25, activation='linear'))
-LSTM_modelApple.add(Dense(1))
-
-#GM model
-LSTM_modelGM = ke.Sequential()
-LSTM_modelGM.add(LSTM(128, return_sequences=True, input_shape=(LSTM_Xtrain2.shape[1], 1)))
-LSTM_modelGM.add(LSTM(64, return_sequences=False))
-LSTM_modelGM.add(Dense(25, activation='linear'))
-LSTM_modelGM.add(Dense(1))
-
-LSTM_modelApple.summary()
-LSTM_modelGM.summary()
-
-LSTM_modelApple.compile(optimizer='rmsprop' , loss= 'mean_squared_error')
-
-LSTM_modelGM.compile(optimizer='rmsprop' , loss= 'mean_squared_error')
-
-history1 = LSTM_modelApple.fit(LSTM_Xtrain1, LSTM_ytrain1, batch_size=32, epochs=10)
-
-history2 = LSTM_modelGM.fit(LSTM_Xtrain2, LSTM_ytrain2, batch_size=32,epochs=10)
-
-
-loss_test1= LSTM_modelApple.evaluate(LSTM_Xtest1, LSTM_ytest1)
-loss_test2 = LSTM_modelApple.evaluate(LSTM_Xtest2, LSTM_ytest2)
-
-predictions1 = LSTM_modelApple.predict(LSTM_Xtest1)
-
-predictions1.reshape(252,)
-
-predictions2 = LSTM_modelGM.predict(LSTM_Xtest2)
-
-predictions2.reshape(252,)
-
-#Predict 11/03/23 price = $177.57
-In_featuresApple = np.array([[175.52, 177.78, 175.46, 76083900]])
-LSTM_modelApple.predict(In_featuresApple)
-print("The predicted stock price for 11/03/23 is $ ", LSTM_modelApple.predict(In_featuresApple),".", " The actual stock price for 11/03/23 is $177.57")
-
-#Plot the first 50 predictions vs the actual y values
-import matplotlib.pyplot as plt
-LSTM_ytest1 = LSTM_ytest1.reshape(252, 1)
-
-LSTM_ytest2 = LSTM_ytest2.reshape(252, 1)
-
-
-
-
-```
-
-**Apple Stock Price Prediction**
-
-```{python echo=TRUE}
-plt.plot(LSTM_ytest1[:50], 'red', label = 'AAPL Stock Price')
-plt.plot(predictions1[:50], color = 'green', label = 'Predicted AAPL Stock Price')
-plt.title('AAPL Stock Price Prediction')
-plt.xlabel('Time')
-plt.ylabel('AAPL Stock Price')
-plt.legend()
-plt.show()
-plt.close()
-```
-
-**GM Stock Price Prediction**
-
-```{python echo=TRUE}
-plt.plot(LSTM_ytest2[:50], 'red', label = 'GM Stock Price')
-plt.plot(predictions2[:50], color = 'green', label = 'Predicted GM Stock Price')
-plt.title('GM Stock Price Prediction')
-plt.xlabel('Time')
-plt.ylabel('GM Stock Price')
-plt.legend()
-plt.show()
-plt.close()
-
-```
-
-**Training loss for Apple**
-
-```{python echo=TRUE}
-plt.close()
-plt.plot(history1.history['loss'], label='Loss')
-plt.title('Training Loss for Apple')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
-plt.close()
-
-
-```
-
-**Training loss plot for GM**
-
-```{python echo=TRUE}
-plt.close()
-plt.plot(history2.history['loss'], label='Loss')
-plt.title('Training Loss for GM')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
-
-
-```
-
-The following table illustrates the fact that different numbers of epochs can yield different results when it comes to training. Training for an excessive number of epochs can cause overfitting, where the model begins to memorize the training data instead of generalizing well to new, unseen data, and underfitting, where the model fails to capture the underlying patterns in the data. Achieving the best training outcomes requires finding the correct balance.
-
-| Epochs  | Apple                      | GM                    |
-|---------|----------------------------|-----------------------|
-| **25**  | ![](images/aapl25.png)     | ![](images/GM25.png)  |
-| **50**  | ![](images/aapl50.png)     | ![](images/GM50.png)  |
-| **100** | ![](images/aapl100.png)    | ![](images/GM100.png) |
-| **150** | ![](images/aapl150.png)    | ![](images/GM150.png) |
-| **200** | ![](images/aapl200-01.png) | ![](images/GM200.png) |
+[Figure 11: Result of the 1st epoch]{.smallcaps}

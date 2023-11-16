@@ -1,0 +1,93 @@
+# Results
+
+## Model Performance
+
+To check our model's performance on unseen data we pass through our testing subset 'LSTM_Xtest' which is a 2-dimensional array consisting of 252 rows by 4 columns and our testing y set which is a 1- dimensional array consisting of 252 rows by 1 column. We define a the loss variable the same as we did during the model building phase, where we selected MSE. After running the predictions on the test set, we get a loss\[MSE\] of 5.2.
+
+![](images/unseendata.png){fig-align="center" width="442"}
+
+[Figure 12: Final model result]{.smallcaps}
+
+To get a visual representation of the predicted values compared to the actual values, we define a predictions variable which uses the LSTM models predict function and pass that to the LSTM_Xtest array. We plot in a line graph the first 50 (Figure 13) data points and the last 50 data points (Figure 14) to get a sense of how the model predicted at both ends of the time series. We also chose to do this because it would be difficult to plot all 252 test observations on one graph. The red line on each graph represents the actual stock price and the green line represents the predicted stock price.
+
+![](images/first50.png){fig-align="center" width="442"}
+
+[Figure 13: Actual Price vs Predicted Price for Apple; first 50 days]{.smallcaps}
+
+![](images/last50.png){fig-align="center" width="442"}
+
+[Figure 14: Actual Price vs Predicted Price for Apple; last 50 days]{.smallcaps}
+
+As can be seen in both graphs, the model does exceptionally well at predicting the closing price.
+
+### Results from other days
+
+We also wanted to evaluate how well our model would predict Apple's stock price outside the 5 years of data we used in our original data set ending on 10/31/2023. To do this, we randomly selected 2 dates not in that original dataset: 11/03/23 and 11/07/2023. We created a 2 by 4 array with the Open, High, Low, and Volume values for each day and passed in the array to the models predict method.
+
+![](images/otherdays.png){fig-align="center" width="442"}
+
+[Figure 15: Array containing features for 11/03/23 and 11/07/23]{.smallcaps}
+
+![](images/otherdayspred.png){fig-align="center" width="442"}
+
+[Table 4: Prediction results from the two arrays]{.smallcaps}
+
+We can see that the model was also able to accurately predict days that were not in our original dataset used to build the model.
+
+### Results on other stocks
+
+All things being the equal for our model architecture, we wanted to test the predictive performance of an LSTM Deep Neural network on another stock. For this purpose, we picked General Motors (GM). We picked this stock because it had different price trends and volatility than Apple, giving us a good comparison.The model summary is the same as compared to Apple because we are using the same five years of data and the same train/test split, except with the values representing the GM stock instead of Apple.
+
+![](images/gm1.png){fig-align="center" width="442"}
+
+[Figure 16: LSTM model summary for General Motors]{.smallcaps}
+
+At the first epoch, we have a loss\[MSE\] of 1128.90 (Figure 17). By the 150th epoch the loss\[MSE\] drops to 0.78 (Figure 18) on our training data, an even better MSE than we saw on the Apple stock. When we apply it to the testing dataset, we get an MSE of 1.42, also lower than what we saw with Apple (Figure 19)
+
+![](images/gme1.png){fig-align="center" width="442"}
+
+[Figure 17: First epoch for General Motors]{.smallcaps}
+
+![](images/gme2.png){fig-align="center" width="442"}
+
+[Figure 18: 150th epoch for General Motors]{.smallcaps}
+
+![](images/gm3.png){fig-align="center" width="442"}
+
+[Figure 19: LSTM results on unseen General Motors testing data]{.smallcaps}
+
+Similarly, when we look at the plot of predictions for both the first 50 days (Figure 20) and the last 50 days (Figure 21), we see that the model was able to accurately predict most days, just as we saw with Apple.
+
+![](images/gmfirst50.png){fig-align="center" width="442"}
+
+[Figure 20: Actual Price vs Predicted Price for General Motors; first 50 days]{.smallcaps}
+
+![](images/gmlast50.png){fig-align="center" width="442"}
+
+[Figure 21: Actual Price vs Predicted Price for General Motors; first 50 days]{.smallcaps}
+
+## Epoch Analysis
+
+The following illustration (Figure 22) show that different numbers of epochs can yield different results when it comes to training. Training for an excessive number of epochs can cause overfitting, where the model begins to memorize the training data instead of generalizing well to new, unseen data. Training too few epochs can result in underfitting, where the model fails to capture the underlying patterns in the data. Achieving the best training outcomes requires finding the correct balance. In the case of our analysis, we decided that 150 epochs yielded the best results for our LSTM model.
+
+| Epochs  | Apple                      | GM                    |
+|---------|----------------------------|-----------------------|
+| **25**  | ![](images/aapl25.png)     | ![](images/GM25.png)  |
+| **50**  | ![](images/aapl50.png)     | ![](images/GM50.png)  |
+| **100** | ![](images/aapl100.png)    | ![](images/GM100.png) |
+| **150** | ![](images/aapl150.png)    | ![](images/GM150.png) |
+| **200** | ![](images/aapl200-01.png) | ![](images/GM200.png) |
+
+[Figure 22: Apple and General Motors predictions plots based on number of epochs]{.smallcaps}
+
+## Other Considerations
+
+Our analysis shows that LSTM models can accurately predict the price of a stock based on its historical data. However, one should be cautious when using such a model in financial transactions without additional research. One reason is because previous research and analysis on stock market data shows that the most accurate prediction of tomorrow's closing stock price is today's closing stock price \[14\].
+
+One way to show that relationship visually is by creating a plot with two lines, one representing the actual closing price of Apple, and another representing the one-day lagged closing price for Apple (Figure 23). For example, for the point representing Tuesday, October 3rd 2023, one point on the plot will show the closing price for Apple on that day, and the other point represents the closing price for Apple on October 2nd. For this plot, we are looking at the last year of the 5-year dataset, running from November 2022 through October 2023.
+
+![](images/laggedprice.png){fig-align="center" width="442"}
+
+[Figure 23: Apple Closing Price vs 1-day lagged Closing Price]{.smallcaps}
+
+We can see that simply predicting that tomorrow's price will be about the same as today's price produces results just as good, if not better, than the LSTM model. That leads to the possible concern that the LSTM is doing precisely that, simply basing its predicting on the price of the previous day.

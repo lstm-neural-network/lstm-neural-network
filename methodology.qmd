@@ -8,25 +8,25 @@ Neural Networks (also known as Artificial Neural Networks or ANN's) are based on
 
 A neural network must have at least one input node, at least one output node, and at least one hidden layer, which are layers of nodes between the Input and Output nodes. Often times, it will contain multiple inputs, hidden layers and outputs (Figure 4)
 
-![](Neural_network.png){fig-align="center" width="268"}
+![](images/Neural_network.png){fig-align="center" width="268"}
 
-[Figure 4: An illustration of a neural network with two input nodes in the input layer, two hidden layers with four nodes each, and two output nodes, with a spider-web of connections between them.]{.smallcaps}
+[Figure 4: An illustration of a neural network with two input nodes in the input layer, two hidden layers with four nodes each, and two output nodes, with a spider-web of connections between them]{.smallcaps}
 
 There are various learning techniques that one can set up for a neural network, called learning rules. The most common learning rule is backpropagation \[7\]. It uses gradient descent to learn the weights of each node, which are essentially the connections between the nodes. The goal of gradient descent is to take small, incremental steps meant at minimizing a loss function, such as the Mean-Squared Error (MSE), for each weight. The activation function (sometimes called the transfer function) takes those weights and defines an output based on the activation function formula. That output will then determine whether any specific neuron is activated. Neurons that are activated have their outputs fed to the next step of the training process.
 
 There are various activation functions and their usefulness depends on various factors, including whether the data is linear or non-linear. There are three activation functions that are the most popular: Sigmoid, Tanh and ReLU. The Sigmoid function maps inputs, regardless of size, to an output ranging from 0 to 1. The Tanh function returns an output ranging from -1 to 1, while the ReLU function removes any negative part of the resulting outputs \[8\] (Figure 5).
 
-![](af.png){fig-align="center" width="442"}
+![](images/af.png){fig-align="center" width="442"}
 
-[Figure 5: An illustration of the three most popular activation functions.]{.smallcaps}
+[Figure 5: An illustration of the three most popular activation functions]{.smallcaps}
 
 ### Recurrent Neural Networks
 
 Most ANN's are feed-forward neural networks, so they are all fully connected and loop free. This means that each neuron in the network provides an input to a neuron in the *following* layer, never going back and sending an input to a neuron in a *previous* layer \[8\]. While this can be useful for some tasks, one of the most powerful benefits that ANN's have is their ability to build a memory of time-series events by going back in time. This is done by having a circular connection between each layer, thus creating an Recurrent Neural Network. Unlike ANN's, a RNN uses that circular connection to previous steps, therefore going back in time (Figure 6).
 
-![](rnn.png){fig-align="center" width="442"}
+![](images/rnn.png){fig-align="center" width="361"}
 
-[Figure 6: An illustration of a recurrent neural network. Unlike an Artificial Neural Network, an RNN contains a feedback loop between the hidden layers.]{.smallcaps}
+[Figure 6: An illustration of a recurrent neural network. Unlike an Artificial Neural Network, an RNN contains a feedback loop between the hidden layers]{.smallcaps}
 
 RNN's also need to be trained differently, as backpropgation on its own does not feed any information back to previous steps. In order to properly train an RNN, we need a feedback loop to do just that. There are two methods that are most common when training an RNN: Backpropagation through time (BPTT) and Real-time recurrent learning (RTRL), the only difference between the two being how they optimize the weights \[8\].
 
@@ -38,7 +38,9 @@ This problem presents itself any time the weight is greater than 1. If you set t
 
 LSTMs are an improvement on the standard RNN models desgined to deal with more complex problems. Unlike a traditional RNN (which also involve a loop),they are able to handle long-term dependencies.. LSTMs were specifically designed to overcome the issues that come with training other RNNs such as vanishing and exploding gradient issues. In order to make the required prediction, they need to process not just individual data points but the entire sequence of data.They are composed of four components; the cell,input gate, the output gate and a forget gate \[1\].
 
-![AN ILLUSTRATION OF LSTM NETWORK](images/lstm%20illustration.JPG){fig-align="center"}
+![](images/lstm%20illustration.JPG){fig-align="center" width="442"}
+
+[Figure 7: An illustration of an LSTM network]{.smallcaps}
 
 The gates are responsible for processing and regulating the information flowing in and out of the cell. The cell state carries the relevant information during the process of the sequence. Information is continually added to and removed from cell through the gates. The gates determine which information is important to keep or forget during the process.
 
@@ -46,9 +48,11 @@ The forget gate is responsible for discarding the information which is not gonna
 
 The sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a typical LSTM network. Within the network, these activation functions are used to manage information flow and determine what should be updated, remembered, and forgotten.
 
-![AN ILLUSTRATION OF ACTIVATION FUNCTIONS USED BY LSTM NETWORKS](images/activation%20functions-01.JPG){fig-align="center"}
+![](images/activation%20functions-01.JPG){fig-align="center" width="442"}
 
-The sigmoid function is employed in the input, output and forget gates. In the input gate it is used to calculate the values from the current input and the previous hidden state to be between 0 and 1. In the forget gate, it calculates the input from the previous hidden state and current input . In the output gate, the sigmoid function also calculates the values of the current input and previous hidden state to produce the output . The tanh function is specifically employed in the output gate to determine which information from the cell state is going to be included in the hidden state and eventually in the network\'s output .
+[Figure 8: An illustration of activation functions used by LSTM networks]{.smallcaps}
+
+The sigmoid function is employed in the input, output and forget gates. In the input gate it is used to calculate the values from the current input and the previous hidden state to be between 0 and 1. In the forget gate, it calculates the input from the previous hidden state and current input . In the output gate, the sigmoid function also calculates the values of the current input and previous hidden state to produce the output . The tanh function is specifically employed in the output gate to determine which information from the cell state is going to be included in the hidden state and eventually in the network's output .
 
 ## Implementation
 

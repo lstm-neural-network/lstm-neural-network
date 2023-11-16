@@ -13,6 +13,7 @@ book:
     - Data.qmd
     - methodology.qmd
     - Analysis.qmd
+    - results.qmd
     - Conclusion.qmd
     - references.qmd
 
