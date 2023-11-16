@@ -120,12 +120,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
+  <a href="./results.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Appendix</span></a>
   </div>
 </li>
     </ul>
@@ -140,6 +150,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#standard-variables" id="toc-standard-variables" class="nav-link active" data-scroll-target="#standard-variables"><span class="toc-section-number">2.1</span>  Standard Variables</a></li>
   <li><a href="#additional-variables" id="toc-additional-variables" class="nav-link" data-scroll-target="#additional-variables"><span class="toc-section-number">2.2</span>  Additional Variables</a></li>
   <li><a href="#data-summary-visualizations" id="toc-data-summary-visualizations" class="nav-link" data-scroll-target="#data-summary-visualizations"><span class="toc-section-number">2.3</span>  Data Summary &amp; Visualizations</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations"><span class="toc-section-number">2.4</span>  Correlations</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Volume</strong> : The total number of shares traded on the given day.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="head.png" class="img-fluid figure-img" width="542"></p>
+<p><img src="images/head.png" class="img-fluid figure-img" width="542"></p>
 </figure>
 </div>
 <p><span class="smallcaps">Table 1: Preview of the first 5 rows of the dataset</span></p>
@@ -202,14 +213,14 @@ ul.task-list li input[type="checkbox"] {
 <p>We know that outside of the date variable, which acts as the index for this dataset, there are 6 other data points that came from the API. We created four more variables and dropped null values. Our resulting dataset contains 1,238 trading days. We can tell from using the pandas “info” command that all the variables are floats, with the exception of volume, which is an integer, and company name, which is an object. We also verify that there are no null values in our data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="info.png" class="img-fluid figure-img" width="267"></p>
+<p><img src="images/info.png" class="img-fluid figure-img" width="267"></p>
 </figure>
 </div>
 <p><span class="smallcaps">Figure 1: Dataframe information of the dataset.</span></p>
 <p>By running the “describe” function, we can get a better idea of our dataset.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="describe.png" class="img-fluid figure-img" width="485"></p>
+<p><img src="images/describe.png" class="img-fluid figure-img" width="485"></p>
 </figure>
 </div>
 <p><span class="smallcaps">Table 2: Summary statistics of the dataset</span></p>
@@ -217,18 +228,29 @@ ul.task-list li input[type="checkbox"] {
 <p>When we plot the closing price by date, we can see that the price has been moving steadily upwards throughout the five year period, with occasional decreases.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="prices.png" class="img-fluid figure-img" width="464"></p>
+<p><img src="images/prices.png" class="img-fluid figure-img" width="464"></p>
 </figure>
 </div>
 <p><span class="smallcaps">Figure 2: Closing price by day for AAPL</span></p>
 <p>From the “describe” function pictured above, we can also tell that the percent change of the stock price has ranged as low as 12.8% lower from the previous trading days closing price, to as high as 11.9% higher. As we are trying to predict percent change, it was important to see a histogram of the datapoint.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="histogram.png" class="img-fluid figure-img" width="465"></p>
+<p><img src="images/histogram.png" class="img-fluid figure-img" width="465"></p>
 </figure>
 </div>
 <p><span class="smallcaps">Figure 3: Histogram of the daily percent change for AAPL</span></p>
 <p>The histogram shows that the data is pretty evenly distributed, with a slight right tail.</p>
+</section>
+<section id="correlations" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="correlations"><span class="header-section-number">2.4</span> Correlations</h2>
+<p>We wanted to see how correlated the variables in our model are. We started by comparing the correlation between our target variable (Close) to the features of our Apple dataset.</p>
+<p>From the correlation table below, we see that the many of our feature variables are highly correlated to the target variable. Adjusted Close, Low, High, Open, and EMA20 are positively correlated with our target variable at a tune of 99% or higher. Volume is negatively correlated, which is an indication that on days that the trading volume of the stock is high, the the closing price decreases. PCT_CHANGE, the variable that contains how much the price changed from the previous date, has no correlation with the closing price.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/correlation.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Table 3: Correlation between target variable and features</span></p>
 
 
 </section>

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kevin Waisfeld; Moise Brutus; Michael Nhliziyo">
-<meta name="dcterms.date" content="2023-11-15">
 
-<title>LSTM Recurrent Neural Networks</title>
+<title>LSTM Recurrent Neural Networks - 5&nbsp; Results</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./Conclusion.html" rel="next">
+<link href="./Analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">LSTM Recurrent Neural Networks</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -96,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -121,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./results.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></a>
+  <a href="./results.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -148,7 +147,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#model-performance" id="toc-model-performance" class="nav-link active" data-scroll-target="#model-performance"><span class="toc-section-number">5.1</span>  Model Performance</a>
+  <ul class="collapse">
+  <li><a href="#results-from-other-days" id="toc-results-from-other-days" class="nav-link" data-scroll-target="#results-from-other-days"><span class="toc-section-number">5.1.1</span>  Results from other days</a></li>
+  <li><a href="#results-on-other-stocks" id="toc-results-on-other-stocks" class="nav-link" data-scroll-target="#results-on-other-stocks"><span class="toc-section-number">5.1.2</span>  Results on other stocks</a></li>
+  </ul></li>
+  <li><a href="#epoch-analysis" id="toc-epoch-analysis" class="nav-link" data-scroll-target="#epoch-analysis"><span class="toc-section-number">5.2</span>  Epoch Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -157,26 +161,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">LSTM Recurrent Neural Networks</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Results</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Kevin Waisfeld; Moise Brutus; Michael Nhliziyo </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -184,9 +176,129 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Our analysis and report on Long Short-Term Memory (LSTM) recurrent neural networks.</p>
+<section id="model-performance" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="model-performance"><span class="header-section-number">5.1</span> Model Performance</h2>
+<p>To check our model’s performance on unseen data we pass through our testing subset ‘LSTM_Xtest’ which is a 2-dimensional array consisting of 252 rows by 4 columns and our testing y set which is a 1- dimensional array consisting of 252 rows by 1 column. We define a the loss variable the same as we did during the model building phase, where we selected MSE. After running the predictions on the test set, we get a loss[MSE] of 5.2.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/unseendata.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 12: Final model result</span></p>
+<p>To get a visual representation of the predicted values compared to the actual values, we define a predictions variable which uses the LSTM models predict function and pass that to the LSTM_Xtest array. We plot in a line graph the first 50 (Figure 13) data points and the last 50 data points (Figure 14) to get a sense of how the model predicted at both ends of the time series. We also chose to do this because it would be difficult to plot all 252 test observations on one graph. The red line on each graph represents the actual stock price and the green line represents the predicted stock price.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/first50.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 13: Actual Price vs Predicted Price for Apple; first 50 days</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/last50.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 14: Actual Price vs Predicted Price for Apple; last 50 days</span></p>
+<p>As can be seen in both graphs, the model does exceptionally well at predicting the closing price.</p>
+<section id="results-from-other-days" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="results-from-other-days"><span class="header-section-number">5.1.1</span> Results from other days</h3>
+<p>We also wanted to evaluate how well our model would predict Apple’s stock price outside the 5 years of data we used in our original data set ending on 10/31/2023. To do this, we randomly selected 2 dates not in that original dataset: 11/03/23 and 11/07/2023. We created a 2 by 4 array with the Open, High, Low, and Volume values for each day and passed in the array to the models predict method.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/otherdays.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 15: Array containing features for 11/03/23 and 11/07/23</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/otherdayspred.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Table 4: Prediction results from the two arrays</span></p>
+<p>We can see that the model was also able to accurately predict days that were not in our original dataset used to build the model.</p>
+</section>
+<section id="results-on-other-stocks" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="results-on-other-stocks"><span class="header-section-number">5.1.2</span> Results on other stocks</h3>
+<p>All things being the equal for our model architecture, we wanted to test the predictive performance of an LSTM Deep Neural network on another stock. For this purpose, we picked General Motors (GM). We picked this stock because it had different price trends and volatility than Apple, giving us a good comparison.The model summary is the same as compared to Apple because we are using the same five years of data and the same train/test split, except with the values representing the GM stock instead of Apple.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gm1.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 16: LSTM model summary for General Motors</span></p>
+<p>At the first epoch, we have a loss[MSE] of 1128.90 (Figure 17). By the 150th epoch the loss[MSE] drops to 0.78 (Figure 18) on our training data, an even better MSE than we saw on the Apple stock. When we apply it to the testing dataset, we get an MSE of 1.42, also lower than what we saw with Apple (Figure 19)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gme1.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 17: First epoch for General Motors</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gme2.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 18: 150th epoch for General Motors</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gm3.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 19: LSTM results on unseen General Motors testing data</span></p>
+<p>Similarly, when we look at the plot of predictions for both the first 50 days (Figure 20) and the last 50 days (Figure 21), we see that the model was able to accurately predict most days, just as we saw with Apple.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gmfirst50.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 20: Actual Price vs Predicted Price for General Motors; first 50 days</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gmlast50.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
+<p><span class="smallcaps">Figure 21: Actual Price vs Predicted Price for General Motors; first 50 days</span></p>
+</section>
+</section>
+<section id="epoch-analysis" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="epoch-analysis"><span class="header-section-number">5.2</span> Epoch Analysis</h2>
+<p>The following illustration (Figure 22) show that different numbers of epochs can yield different results when it comes to training. Training for an excessive number of epochs can cause overfitting, where the model begins to memorize the training data instead of generalizing well to new, unseen data. Training too few epochs can result in underfitting, where the model fails to capture the underlying patterns in the data. Achieving the best training outcomes requires finding the correct balance. In the case of our analysis, we decided that 150 epochs yielded the best results for our LSTM model.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Epochs</th>
+<th>Apple</th>
+<th>GM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>25</strong></td>
+<td><img src="images/aapl25.png" class="img-fluid"></td>
+<td><img src="images/GM25.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td><strong>50</strong></td>
+<td><img src="images/aapl50.png" class="img-fluid"></td>
+<td><img src="images/GM50.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td><strong>100</strong></td>
+<td><img src="images/aapl100.png" class="img-fluid"></td>
+<td><img src="images/GM100.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td><strong>150</strong></td>
+<td><img src="images/aapl150.png" class="img-fluid"></td>
+<td><img src="images/GM150.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td><strong>200</strong></td>
+<td><img src="images/aapl200-01.png" class="img-fluid"></td>
+<td><img src="images/GM200.png" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="smallcaps">Figure 22: Apple and General Motors predictions plots based on number of epochs</span></p>
 
 
 </section>
@@ -327,10 +439,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./Analysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Analysis</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Conclusion.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
