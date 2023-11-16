@@ -1,5 +1,19 @@
 # Conclusion
 
+## Other Considerations
+
+Our analysis shows that LSTM models can accurately predict the price of a stock based on its historical data. However, one should be cautious when using such a model in financial transactions without additional research. One reason is because previous research and analysis on stock market data shows that the most accurate prediction of tomorrow's closing stock price is today's closing stock price \[14\].
+
+One way to show that relationship visually is by creating a plot with two lines, one representing the actual closing price of Apple, and another representing the one-day lagged closing price for Apple (Figure 23). For example, for the point representing Tuesday, October 3rd 2023, one point on the plot will show the closing price for Apple on that day, and the other point represents the closing price for Apple on October 2nd. For this plot, we are looking at the last year of the 5-year dataset, running from November 2022 through October 2023.
+
+![](images/laggedprice.png){fig-align="center" width="442"}
+
+[Figure 23: Apple Closing Price vs 1-day lagged Closing Price]{.smallcaps}
+
+We can see that simply predicting that tomorrow's price will be about the same as today's price produces results just as good, if not better, than the LSTM model. That leads to the possible concern that the LSTM is doing precisely that, simply basing its predicting on the price of the previous day.
+
+## Summary
+
 Our LSTM model was able to accurately predict the price of Apple's stock using historical trading data. In our five-year dataset, Apple's stock has had low volatility and has generally trended up throughout that time. We wanted to also test the model on a stock that hasn't performed as well over the last five years, which is why we chose General Motors as a comparison. Whereas Apple's stock has risen over 370% in that timeframe, GM has decreased over 15%, and has seen much more volatility in that time.
 
 Our analysis and results show that LSTM models do hold predictive power when it comes to financial markets, but that further research has to be done to ensure the model isn't simply spitting out numbers that resemble the previous days closing price.
