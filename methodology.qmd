@@ -44,7 +44,19 @@ LSTMs are an improvement on the standard RNN models desgined to deal with more c
 
 The gates are responsible for processing and regulating the information flowing in and out of the cell. The cell state carries the relevant information during the process of the sequence. Information is continually added to and removed from cell through the gates. The gates determine which information is important to keep or forget during the process.
 
-The forget gate is responsible for discarding the information which is not gonna used in the next steps. It determines which information from the previous cell state is retained\[9\]. The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.Therefore this means that the closer the value is to 1, the more likely it is to be kept. The input gate charge of choosing which new data points to include in the cell state at a certain time step \[9\]. The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function. The output gate decides which cell state data should be carried over to the following time step and added to the network's output\[9\]. It makes use of a sigmoid activation function and is essential to the LSTM's capacity to provide outputs that are aware of context.
+The forget gate is responsible for discarding the information which is not gonna used in the next steps.
+
+![Forget gate equation](images/forget%20gate.JPG){alt="Forget gate equation" fig-align="center"}
+
+It determines which information from the previous cell state is retained\[9\]. The closer the value of the information passed through the forget is to 0, the more likely is to be forgotten.Therefore this means that the closer the value is to 1, the more likely it is to be kept. The input gate is in charge of choosing which new data points to include in the cell state at a certain time step \[9\].
+
+![Input gate equation](images/input%20gate.JPG){fig-align="center"}
+
+The input gate regulates the information flow by producing values between 0 and 1 using a sigmoid activation function. The output gate decides which cell state data should be carried over to the following time step and added to the network's output\[9\].
+
+![Output gate equation](images/output%20gate-01.JPG){fig-align="center"}
+
+It makes use of a sigmoid activation function and is essential to the LSTM's capacity to provide outputs that are aware of context.
 
 The sigmoid and tanh activation functions are crucial for the different gates and operations of the LSTM architecture in a typical LSTM network. Within the network, these activation functions are used to manage information flow and determine what should be updated, remembered, and forgotten.
 
